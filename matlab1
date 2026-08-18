@@ -1,0 +1,39 @@
+% --- Lectura y visualización en tiempo real del GSR ---
+clear; clc; close all;
+
+puerto = "COM3";  % Cambia según tu sistema (revisa Administrador de dispositivos o /dev/ttyUSB0 en Linux/Mac)
+baudrate = 9600;
+
+s = serialport(puerto, baudrate);
+configureTerminator(s, "LF");
+flush(s);
+
+ventana = 200; % número de muestras visibles en pantalla
+t = nan(1, ventana);
+gsr = nan(1, ventana);
+
+figure;
+h = plot(t, gsr, 'b-', 'LineWidth', 1.2);
+xlabel('Tiempo (s)');
+ylabel('Lectura GSR (ADC 0-1023)');
+title('Monitoreo en tiempo real - GSR');
+grid on;
+
+tInicio = tic;
+
+while true
+    linea = readline(s);
+    datos = split(linea, ",");
+    if numel(datos) == 4
+        tiempo = str2double(datos(1)) / 1000; % ms -> s
+        lectura = str2double(datos(2));
+        nivel = datos(4);
+
+        t = [t(2:end), tiempo];
+        gsr = [gsr(2:end), lectura];
+
+        set(h, 'XData', t, 'YData', gsr);
+        title(sprintf('GSR en tiempo real | Nivel: %s', nivel));
+        drawnow limitrate;
+    end
+end
