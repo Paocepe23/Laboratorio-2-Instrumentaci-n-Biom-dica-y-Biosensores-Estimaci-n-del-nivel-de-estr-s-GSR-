@@ -1,0 +1,23 @@
+% Guardar datos en CSV mientras registras (versión con log a archivo)
+archivo = fopen('registro_gsr.csv', 'w');
+fprintf(archivo, "tiempo_ms,lectura,voltaje,nivel\n");
+
+s = serialport("COM3", 9600);
+configureTerminator(s, "LF");
+flush(s);
+
+tic;
+while toc < 60  % registra 60 segundos, ajusta según la prueba
+    linea = readline(s);
+    fprintf(archivo, "%s\n", linea);
+end
+fclose(archivo);
+
+% Luego, para graficar con buena resolución:
+T = readtable('registro_gsr.csv');
+figure;
+plot(T.tiempo_ms/1000, T.lectura, 'LineWidth', 1.5);
+xlabel('Tiempo (s)'); ylabel('Lectura GSR (ADC)');
+title('Señal GSR durante inspiración profunda');
+grid on;
+saveas(gcf, 'grafica_gsr.png');
