@@ -68,9 +68,7 @@ La implementación del sistema de medición se realizó utilizando un Arduino y 
 
 Al iniciar el sistema, se realizó una etapa de calibración con el sujeto en reposo. Durante aproximadamente 3 segundos se adquirieron 100 muestras de la entrada analógica A0, utilizando un intervalo de 30 ms entre muestras. A partir de estas mediciones se calculó el promedio, el cual se utilizó como **baseline** o nivel de referencia:
 
-```text
-baseline = promedio de las 100 muestras iniciales
-```
+La clasificación se realizó mediante Δ = lectura - baseline
 
 Este valor permitió establecer una referencia individual para comparar las variaciones posteriores de la señal. De esta manera, el sistema no depende únicamente de un valor absoluto, sino que analiza cuánto se modifica la lectura respecto al estado inicial del sujeto.
 
