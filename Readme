@@ -1,6 +1,6 @@
-# Laboratorio 2 — Estimación del nivel de estrés basada en la respuesta galvánica cutánea (GSR)
+Laboratorio 2 — Estimación del nivel de estrés basada en la respuesta galvánica cutánea (GSR)
 
-## 1. Introducción
+1. Introducción
 
 La respuesta galvánica cutánea (GSR, *Galvanic Skin Response*) es una señal fisiológica relacionada con los cambios en la conductancia eléctrica de la piel. Esta señal hace parte de la actividad electrodérmica (EDA, *Electrodermal Activity*), la cual comprende diferentes fenómenos eléctricos que ocurren en la piel y que pueden variar ante estímulos fisiológicos, térmicos, mecánicos o emocionales.
 
@@ -8,29 +8,29 @@ La GSR resulta de interés en instrumentación biomédica debido a su relación 
 
 En esta práctica se desarrolló un sistema vestible para adquirir continuamente las variaciones de la GSR y observar su comportamiento durante diferentes condiciones, incluyendo reposo, respiración profunda y actividades que requieren concentración y esfuerzo mental. La guía plantea como propósito desarrollar un sistema capaz de monitorear el nivel de estrés percibido mediante la respuesta galvánica cutánea.
 
-## 2. Marco teórico
+ 2. Marco teórico
 
-### 2.1 Actividad electrodérmica
+ 2.1 Actividad electrodérmica
 
 La actividad electrodérmica o EDA corresponde a los fenómenos eléctricos asociados con la piel, entre ellos las variaciones de su capacidad para conducir corriente eléctrica. Una de las variables utilizadas para caracterizar este fenómeno es la conductancia cutánea, que puede cambiar ante diferentes estímulos.
 
 La conductancia eléctrica se expresa en siemens (S) y representa la facilidad con la que una corriente eléctrica puede circular a través de un material. En el caso de la piel, esta propiedad está relacionada, entre otros factores, con la actividad de las glándulas sudoríparas.
 
-### 2.2 Nivel de conductancia cutánea y respuesta de conductancia
+2.2 Nivel de conductancia cutánea y respuesta de conductancia
 
 La señal GSR puede analizarse considerando una componente estacionaria y una componente transitoria.
 
-La **componente estacionaria**, también denominada SCL (*Skin Conductance Level*), corresponde al nivel basal de conductancia de la piel. Este nivel puede variar lentamente dependiendo del estado fisiológico de la persona.
+La componente estacionaria, también denominada SCL (Skin Conductance Level), corresponde al nivel basal de conductancia de la piel. Este nivel puede variar lentamente dependiendo del estado fisiológico de la persona.
 
-La **componente transitoria**, denominada SCR (*Skin Conductance Response*), corresponde a cambios temporales que aparecen sobre el nivel basal como respuesta a un estímulo. De acuerdo con la guía, estas respuestas suelen manifestarse como un incremento relativamente rápido de la conductancia seguido de un retorno más lento hacia el valor inicial.
+La componente transitoria, denominada SCR (Skin Conductance Response), corresponde a cambios temporales que aparecen sobre el nivel basal como respuesta a un estímulo. De acuerdo con la guía, estas respuestas suelen manifestarse como un incremento relativamente rápido de la conductancia seguido de un retorno más lento hacia el valor inicial.
 
 De forma simplificada, la señal puede representarse como:
 
-**GSR = componente estacionaria + componente transitoria**
+GSR = componente estacionaria + componente transitoria
 
 La identificación de estas dos componentes es uno de los objetivos principales de la práctica.
 
-### 2.3 GSR y estrés
+2.3 GSR y estrés
 
 El estrés puede producir una activación del sistema nervioso autónomo, generando diferentes respuestas fisiológicas. Una de ellas puede ser el aumento de la actividad de las glándulas sudoríparas, lo que modifica las propiedades eléctricas de la piel y puede producir cambios observables en la GSR.
 
@@ -38,7 +38,7 @@ Sin embargo, un aumento de la GSR no significa necesariamente que una persona es
 
 Por esta razón, en esta práctica la GSR debe considerarse un **indicador indirecto de activación fisiológica**, y los resultados deben interpretarse teniendo en cuenta las condiciones en las que fueron obtenidos.
 
-### 2.4 Sistema de adquisición
+2.4 Sistema de adquisición
 
 Para obtener la señal se utilizan electrodos colocados sobre la piel, los cuales permiten detectar cambios en sus propiedades eléctricas. La guía propone el desarrollo de un dispositivo vestible capaz de capturar las variaciones de GSR y transmitirlas a un computador, además de evaluar posteriormente una transmisión inalámbrica.
 
@@ -46,13 +46,13 @@ Entre los elementos disponibles para el desarrollo de la práctica se encuentran
 
 Un aspecto fundamental del diseño es limitar la corriente que atraviesa el cuerpo. La guía establece que, utilizando una alimentación entre 3.3 y 5 VDC, se deben realizar los cálculos necesarios para garantizar que la corriente a través de la piel de un sujeto sano no supere **1 mA**, incluso considerando el caso extremo de una resistencia de piel igual a cero.
 
-## 3. Objetivos
+ 3. Objetivos
 
-### Objetivo general
+Objetivo general
 
 Proporcionar un sistema de medición continua de estrés basado en la respuesta galvánica cutánea (GSR).
 
-### Objetivos específicos
+ Objetivos específicos
 
 * Identificar las componentes estacionaria y transitoria de la GSR.
 * Elaborar un dispositivo vestible que permita capturar de forma continua las variaciones de la GSR.
@@ -60,11 +60,11 @@ Proporcionar un sistema de medición continua de estrés basado en la respuesta 
 
 Estos objetivos corresponden a los establecidos en la guía de laboratorio.
 
-## 4. Metodología
+ 4. Metodología
 
 La implementación del sistema de medición se realizó utilizando un Arduino y un sensor de respuesta galvánica cutánea conectado a la entrada analógica A0. El Arduino se encargó de adquirir continuamente la señal proveniente del sensor, realizar un procesamiento básico para reducir las variaciones rápidas de la lectura y determinar un nivel de respuesta relativo respecto a las condiciones iniciales del sujeto.
 
-### 4.1 Adquisición y calibración de la señal
+ 4.1 Adquisición y calibración de la señal
 
 Al iniciar el sistema, se realizó una etapa de calibración con el sujeto en reposo. Durante aproximadamente 3 segundos se adquirieron 100 muestras de la entrada analógica A0, utilizando un intervalo de 30 ms entre muestras. A partir de estas mediciones se calculó el promedio, el cual se utilizó como **baseline** o nivel de referencia:
 
@@ -82,7 +82,7 @@ V = ADC\left(\frac{5}{1023}\right)
 
 donde (ADC) corresponde a la lectura obtenida en la entrada analógica y (V) representa el voltaje equivalente.
 
-### 4.2 Estimación del nivel de respuesta
+ 4.2 Estimación del nivel de respuesta
 
 Para estimar el nivel de respuesta fisiológica, se calculó la diferencia entre la lectura actual y el valor de referencia obtenido durante la calibración:
 
@@ -100,7 +100,7 @@ A partir de esta diferencia se establecieron tres categorías:
 
 Estos valores corresponden a umbrales iniciales implementados en el código y deben entenderse como una **clasificación relativa de la respuesta medida**, no como una escala clínica universal de estrés. La propia guía plantea que los umbrales deben ajustarse después de realizar las pruebas experimentales de la Parte B.2, tomando como referencia los valores máximos y mínimos obtenidos durante la práctica.
 
-### 4.3 Transmisión de los datos
+ 4.3 Transmisión de los datos
 
 Una vez procesada cada medición, Arduino envió los datos mediante comunicación serial a una velocidad de 9600 baudios. La información se transmitió en formato CSV con cuatro variables:
 
@@ -112,7 +112,7 @@ El tiempo corresponde al instante de adquisición en milisegundos, la lectura co
 
 La estructura de los datos permitió posteriormente almacenar y procesar las mediciones desde MATLAB.
 
-### 4.4 Visualización en tiempo real mediante MATLAB
+ 4.4 Visualización en tiempo real mediante MATLAB
 
 Para visualizar la señal durante la adquisición se desarrolló un segundo programa en MATLAB. Este programa estableció comunicación con Arduino mediante el puerto serial `COM3` a 9600 baudios y recibió continuamente las líneas de datos enviadas por el microcontrolador.
 
@@ -122,7 +122,7 @@ La visualización se realizó mediante una ventana móvil de 200 muestras, permi
 
 Este procedimiento permitió comprobar visualmente el comportamiento del dispositivo y observar las variaciones de la señal mientras el sujeto se encontraba en diferentes condiciones experimentales.
 
-### 4.5 Registro de datos para análisis posterior
+ 4.5 Registro de datos para análisis posterior
 
 Además de la visualización en tiempo real, se implementó un segundo programa en MATLAB destinado al almacenamiento de los datos. Para cada prueba se abrió un archivo denominado `registro_gsr.csv`, en el cual se guardaron las mediciones recibidas durante un periodo de 60 segundos.
 
@@ -158,17 +158,17 @@ Transmisión serial
                     Análisis posterior
 ```
 
-## 5. Resultados
+ 5. Resultados
 
 El sistema desarrollado permitió adquirir la señal proveniente del sensor GSR y visualizar sus variaciones tanto en tiempo real como mediante el almacenamiento de los datos para análisis posterior.
 
 La señal obtenida por Arduino se expresó inicialmente como una lectura del conversor analógico-digital en un rango de 0 a 1023. A partir de esta lectura también se calculó el voltaje equivalente. Por lo tanto, las gráficas obtenidas directamente a partir del archivo CSV representan principalmente la **respuesta del sistema de adquisición en unidades ADC**, y no una medición directa de conductancia en siemens.
 
-### 5.1 Calibración y nivel basal
+ 5.1 Calibración y nivel basal
 
 Durante los primeros segundos de funcionamiento se realizó la calibración con el sujeto en reposo. El promedio de las 100 muestras iniciales permitió establecer el valor de referencia o baseline.
 
-**Baseline obtenido: [valor ADC]**
+Baseline obtenido: [valor ADC]
 
 Este valor representa la condición inicial utilizada posteriormente para determinar las variaciones de la señal. Las modificaciones posteriores se analizaron mediante la diferencia:
 
@@ -176,17 +176,17 @@ Este valor representa la condición inicial utilizada posteriormente para determ
 \Delta = lectura - baseline
 ]
 
-### 5.2 Señal durante la prueba experimental
+5.2 Señal durante la prueba experimental
 
 Durante la prueba de **[respiración profunda / actividad cognitiva / condición evaluada]**, la señal presentó **[describir comportamiento observado]**.
 
-**[Insertar aquí la gráfica generada mediante MATLAB]**
 
-**Figura X.** Variación de la señal GSR durante la prueba experimental.
+
+
 
 A partir de la gráfica se puede identificar el nivel basal de la señal y las variaciones transitorias que aparecen durante el estímulo. Si se observa un incremento de la lectura respecto al baseline, el sistema puede clasificarlo como una respuesta moderada o alta dependiendo del valor de (\Delta).
 
-### 5.3 Clasificación obtenida
+5.3 Clasificación obtenida
 
 Los umbrales implementados inicialmente permitieron clasificar la respuesta en tres categorías:
 
@@ -196,9 +196,9 @@ Los umbrales implementados inicialmente permitieron clasificar la respuesta en t
 | Moderado | (15 \leq \Delta < 40)  |
 | Alto     | (\Delta \geq 40)       |
 
-**Importante:** estos valores corresponden al algoritmo utilizado durante la adquisición y no deben presentarse como valores fisiológicos universales. Para el informe final, lo ideal es comparar estos umbrales con los valores realmente obtenidos durante las pruebas y, si es necesario, reajustarlos.
 
-## 6. Datos obtenidos
+
+ 6. Datos obtenidos
 
 Los datos registrados por el sistema fueron almacenados en un archivo CSV con cuatro columnas:
 
@@ -219,7 +219,7 @@ Para cada condición experimental se pueden calcular el valor mínimo, máximo, 
 | Respiración profunda |        [ ] |        [ ] |          [ ] |      [ ] | [ ]                |
 | Actividad cognitiva  |        [ ] |        [ ] |          [ ] |      [ ] | [ ]                |
 
-## 7. Discusión
+ 7. Discusión
 
 El sistema implementado permitió realizar una adquisición continua de la señal GSR y establecer una referencia individual mediante la calibración inicial. El uso de un baseline resulta importante debido a que la señal puede presentar diferentes valores iniciales entre sujetos, por lo que comparar directamente los valores absolutos podría dificultar la interpretación.
 
@@ -235,7 +235,7 @@ Por otro lado, durante las actividades cognitivas, un aumento de la respuesta re
 
 Finalmente, el sistema desarrollado cumple con la función de adquirir, procesar, transmitir y visualizar la respuesta GSR, lo que coincide con el propósito de la práctica de desarrollar un dispositivo vestible capaz de capturar continuamente las variaciones de esta señal.
 
-## 8. Conclusión
+ 8. Conclusión
 
 El desarrollo del sistema permitió implementar una plataforma básica para la adquisición continua de la respuesta galvánica cutánea utilizando Arduino y MATLAB. La calibración inicial permitió establecer un baseline individual y posteriormente identificar las variaciones de la señal durante las diferentes pruebas realizadas.
 
