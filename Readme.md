@@ -76,7 +76,6 @@ La disposición de los componentes permitió obtener un sistema vestible integra
 
 ### Montaje del dispositivo vestible
 
-<img width="630" height="66" alt="image" src="BackGSR.jpeg" />
 <img width="896" height="1195" alt="Gemini_Generated_Image_yjhbw1yjhbw1yjhb" src="https://github.com/user-attachments/assets/fdc06a4e-0a8e-4cec-b4af-89a124ee7b5a" />
 
 
