@@ -132,6 +132,8 @@ En conjunto, los resultados muestran que el sistema fue capaz de detectar difere
 
 
  # 7. Discusión
+ <img width="470" height="480" alt="WhatsApp Image 2026-08-25 at 10 08 53 PM" src="https://github.com/user-attachments/assets/4bf391b2-3ad4-463e-9688-d419aea4e907" />
+
 
 Los resultados obtenidos permiten observar que la respuesta galvánica cutánea presenta variaciones tanto en su nivel basal como en sus respuestas transitorias. Esto es importante porque la señal GSR no permanece constante durante una prueba, sino que puede cambiar como consecuencia de diferentes estímulos y del estado fisiológico del sujeto. En las tres mediciones realizadas se observaron comportamientos diferentes, lo que permitió al sistema establecer distintos estados de respuesta.
 
