@@ -97,6 +97,8 @@ La señal obtenida por Arduino se expresó inicialmente como una lectura del con
 
 ## RESULTADO 3
 
+<img width="417" height="112" alt="WhatsApp Image 2026-08-25 at 9 44 04 PM (4)" src="https://github.com/user-attachments/assets/a2f02f25-d47f-486c-a3f1-1c008a8cc777" />
+<img width="1600" height="811" alt="WhatsApp Image 2026-08-25 at 9 43 50 PM" src="https://github.com/user-attachments/assets/ccca16b6-63ec-4068-8404-52ea12adadea" />
 
 
 
