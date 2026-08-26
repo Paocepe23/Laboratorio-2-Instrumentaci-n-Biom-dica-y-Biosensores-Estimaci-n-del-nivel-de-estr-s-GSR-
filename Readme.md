@@ -38,14 +38,6 @@ Sin embargo, un aumento de la GSR no significa necesariamente que una persona es
 
 Por esta razón, en esta práctica la GSR debe considerarse un **indicador indirecto de activación fisiológica**, y los resultados deben interpretarse teniendo en cuenta las condiciones en las que fueron obtenidos.
 
-## 2.4 Sistema de adquisición
-
-Para obtener la señal se utilizan electrodos colocados sobre la piel, los cuales permiten detectar cambios en sus propiedades eléctricas. La guía propone el desarrollo de un dispositivo vestible capaz de capturar las variaciones de GSR y transmitirlas a un computador, además de evaluar posteriormente una transmisión inalámbrica.
-
-Entre los elementos disponibles para el desarrollo de la práctica se encuentran Arduino UNO o Nano, protoboard, cables, una resistencia de 68 kΩ, un condensador de 1 μF y electrodos Ag-AgCl o electrodos metálicos apropiados.
-
-Un aspecto fundamental del diseño es limitar la corriente que atraviesa el cuerpo. La guía establece que, utilizando una alimentación entre 3.3 y 5 VDC, se deben realizar los cálculos necesarios para garantizar que la corriente a través de la piel de un sujeto sano no supere **1 mA**, incluso considerando el caso extremo de una resistencia de piel igual a cero.
-
 # 3. Objetivos
 
 ## Objetivo general
@@ -70,7 +62,7 @@ El ESP fue alimentado mediante una **power bank**, ubicada en la zona de la cint
 
 En la protoboard también se conectaron los **electrodos encargados de adquirir la señal proveniente del bíceps**. Estos electrodos permitieron obtener la información fisiológica necesaria para el análisis de la respuesta galvánica cutánea, manteniendo el contacto con la piel durante las diferentes pruebas realizadas.
 
-La comunicación entre el dispositivo y el computador se realizó mediante **Wi-Fi**, permitiendo transmitir los datos adquiridos de forma inalámbrica. Aunque esta alternativa representó un mayor consumo energético debido al funcionamiento continuo de la comunicación inalámbrica, durante las pruebas presentó un comportamiento más favorable y permitió obtener mejores resultados en comparación con otras alternativas de transmisión evaluadas. Por esta razón, se decidió utilizar la comunicación Wi-Fi como parte de la configuración final del sistema.
+La comunicación entre el dispositivo y el computador se realizó mediante **Bluetooth**, permitiendo transmitir los datos adquiridos de forma inalámbrica. Aunque esta alternativa representó un mayor consumo energético debido al funcionamiento continuo de la comunicación inalámbrica, durante las pruebas presentó un comportamiento más favorable y permitió obtener mejores resultados en comparación con otras alternativas de transmisión evaluadas. Por esta razón, se decidió utilizar la comunicación Wi-Fi como parte de la configuración final del sistema.
 
 La disposición de los componentes permitió obtener un sistema vestible integrado, en el cual el corrector de postura funcionó como soporte físico, la protoboard como base para el circuito electrónico, el ESP como unidad de procesamiento y comunicación, los electrodos como elementos de adquisición de la señal y la power bank como fuente de alimentación. Esta configuración permitió realizar las pruebas de adquisición mientras el sujeto llevaba puesto el dispositivo y se desplazaba con los elementos electrónicos instalados sobre el cuerpo.
 
