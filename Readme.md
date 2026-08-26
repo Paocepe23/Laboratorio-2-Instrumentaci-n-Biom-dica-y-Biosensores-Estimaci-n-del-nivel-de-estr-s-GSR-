@@ -73,7 +73,7 @@ La disposición de los componentes permitió obtener un sistema vestible integra
 
 # Montaje del dispositivo vestible
 
-<img width="896" height="1195" alt="Gemini_Generated_Image_yjhbw1yjhbw1yjhb" src="https://github.com/user-attachments/assets/fdc06a4e-0a8e-4cec-b4af-89a124ee7b5a" />
+<img width="496" height="595" alt="Gemini_Generated_Image_yjhbw1yjhbw1yjhb" src="https://github.com/user-attachments/assets/fdc06a4e-0a8e-4cec-b4af-89a124ee7b5a" />
 
 
 *En la vista frontal se observa la disposición del corrector de postura y los elementos asociados al sistema de adquisición, mientras que en la vista posterior se aprecia la ubicación de la protoboard, el ESP y la conexión con la fuente de alimentación ubicada en la zona de la cintura.*
