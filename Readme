@@ -92,10 +92,6 @@ Estos valores corresponden a umbrales iniciales implementados en el código y de
 
 Una vez procesada cada medición, Arduino envió los datos mediante comunicación serial a una velocidad de 9600 baudios. La información se transmitió en formato CSV con cuatro variables:
 
-```text
-tiempo_ms, lectura, voltaje, nivel
-```
-
 El tiempo corresponde al instante de adquisición en milisegundos, la lectura corresponde al valor entregado por el ADC, el voltaje corresponde a su conversión a voltios y el nivel corresponde a la clasificación relativa obtenida mediante los umbrales definidos.
 
 La estructura de los datos permitió posteriormente almacenar y procesar las mediciones desde MATLAB.
