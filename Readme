@@ -114,33 +114,7 @@ Una vez finalizada la adquisición, el archivo fue importado nuevamente a MATLAB
 
 El procedimiento general desarrollado puede resumirse de la siguiente manera:
 
-```text
-Sujeto en reposo
-       ↓
-Calibración inicial
-100 muestras / ~3 s
-       ↓
-Cálculo del baseline
-       ↓
-Adquisición continua
-10 muestras por lectura
-       ↓
-Promedio de muestras
-       ↓
-Conversión ADC → voltaje
-       ↓
-Cálculo de Δ respecto al baseline
-       ↓
-Clasificación: BAJO / MODERADO / ALTO
-       ↓
-Transmisión serial
-       ↓
-       ├── MATLAB → visualización en tiempo real
-       │
-       └── MATLAB → almacenamiento CSV
-                         ↓
-                    Análisis posterior
-```
+
 
  5. Resultados
 
@@ -148,62 +122,13 @@ El sistema desarrollado permitió adquirir la señal proveniente del sensor GSR 
 
 La señal obtenida por Arduino se expresó inicialmente como una lectura del conversor analógico-digital en un rango de 0 a 1023. A partir de esta lectura también se calculó el voltaje equivalente. Por lo tanto, las gráficas obtenidas directamente a partir del archivo CSV representan principalmente la **respuesta del sistema de adquisición en unidades ADC**, y no una medición directa de conductancia en siemens.
 
- 5.1 Calibración y nivel basal
-
-Durante los primeros segundos de funcionamiento se realizó la calibración con el sujeto en reposo. El promedio de las 100 muestras iniciales permitió establecer el valor de referencia o baseline.
-
-Baseline obtenido: [valor ADC]
-
-Este valor representa la condición inicial utilizada posteriormente para determinar las variaciones de la señal. Las modificaciones posteriores se analizaron mediante la diferencia:
-
-[
-\Delta = lectura - baseline
-]
-
-5.2 Señal durante la prueba experimental
-
-Durante la prueba de **[respiración profunda / actividad cognitiva / condición evaluada]**, la señal presentó **[describir comportamiento observado]**.
 
 
 
 
 
-A partir de la gráfica se puede identificar el nivel basal de la señal y las variaciones transitorias que aparecen durante el estímulo. Si se observa un incremento de la lectura respecto al baseline, el sistema puede clasificarlo como una respuesta moderada o alta dependiendo del valor de (\Delta).
 
-5.3 Clasificación obtenida
-
-Los umbrales implementados inicialmente permitieron clasificar la respuesta en tres categorías:
-
-| Nivel    | Condición implementada |
-| -------- | ---------------------- |
-| Bajo     | (\Delta < 15)          |
-| Moderado | (15 \leq \Delta < 40)  |
-| Alto     | (\Delta \geq 40)       |
-
-
-
- 6. Datos obtenidos
-
-Los datos registrados por el sistema fueron almacenados en un archivo CSV con cuatro columnas:
-
-| Variable    | Descripción                                    | Unidad             |
-| ----------- | ---------------------------------------------- | ------------------ |
-| `tiempo_ms` | Tiempo transcurrido desde el inicio de Arduino | ms                 |
-| `lectura`   | Valor obtenido por el ADC                      | ADC                |
-| `voltaje`   | Conversión de la lectura ADC                   | V                  |
-| `nivel`     | Clasificación respecto al baseline             | Bajo/Moderado/Alto |
-
-Esta estructura permitió conservar tanto la señal original como la información procesada por el sistema.
-
-Para cada condición experimental se pueden calcular el valor mínimo, máximo, promedio y variación respecto al baseline:
-
-| Condición            | Mínimo ADC | Máximo ADC | Promedio ADC | Δ máximo | Nivel predominante |
-| -------------------- | ---------: | ---------: | -----------: | -------: | ------------------ |
-| Reposo               |        [ ] |        [ ] |          [ ] |      [ ] | [ ]                |
-| Respiración profunda |        [ ] |        [ ] |          [ ] |      [ ] | [ ]                |
-| Actividad cognitiva  |        [ ] |        [ ] |          [ ] |      [ ] | [ ]                |
-
- 7. Discusión
+ 6. Discusión
 
 El sistema implementado permitió realizar una adquisición continua de la señal GSR y establecer una referencia individual mediante la calibración inicial. El uso de un baseline resulta importante debido a que la señal puede presentar diferentes valores iniciales entre sujetos, por lo que comparar directamente los valores absolutos podría dificultar la interpretación.
 
@@ -219,7 +144,7 @@ Por otro lado, durante las actividades cognitivas, un aumento de la respuesta re
 
 Finalmente, el sistema desarrollado cumple con la función de adquirir, procesar, transmitir y visualizar la respuesta GSR, lo que coincide con el propósito de la práctica de desarrollar un dispositivo vestible capaz de capturar continuamente las variaciones de esta señal.
 
- 8. Conclusión
+ 7. Conclusión
 
 El desarrollo del sistema permitió implementar una plataforma básica para la adquisición continua de la respuesta galvánica cutánea utilizando Arduino y MATLAB. La calibración inicial permitió establecer un baseline individual y posteriormente identificar las variaciones de la señal durante las diferentes pruebas realizadas.
 
