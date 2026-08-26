@@ -92,7 +92,7 @@ La señal obtenida por Arduino se expresó inicialmente como una lectura del con
 
 
 
- 6. Análisis de resultados
+ # 6. Análisis de resultados
 
 Durante las pruebas se realizaron adquisiciones de 30 segundos, obteniendo aproximadamente 600 muestras por registro, lo que evidencia una adquisición continua y estable de la señal. En los resultados se obtuvieron diferentes valores promedio de conductancia dependiendo de la condición evaluada. En una de las pruebas se registró una conductancia promedio de 0,1983 µS, clasificada por el sistema como estrés bajo o estado relajado. En otra medición se obtuvo un promedio de 0,5179 µS, correspondiente a un estado clasificado como estrés elevado o respuesta simpática alta, mientras que una tercera prueba presentó un promedio de **0,6256 µS**, clasificado como **estrés moderado o estado de alerta**.
 
@@ -107,7 +107,7 @@ En conjunto, los resultados muestran que el sistema fue capaz de detectar difere
 
 
 
- 7. Discusión
+ # 7. Discusión
 
 Los resultados obtenidos permiten observar que la respuesta galvánica cutánea presenta variaciones tanto en su nivel basal como en sus respuestas transitorias. Esto es importante porque la señal GSR no permanece constante durante una prueba, sino que puede cambiar como consecuencia de diferentes estímulos y del estado fisiológico del sujeto. En las tres mediciones realizadas se observaron comportamientos diferentes, lo que permitió al sistema establecer distintos estados de respuesta.
 
@@ -124,7 +124,7 @@ La separación de la señal en una componente tónica y una componente fásica p
 En general, el sistema presentó un comportamiento adecuado para registrar continuamente la señal durante las pruebas, obteniendo cerca de 600 muestras en cada registro de 30 segundos. Esto demuestra que la adquisición y transmisión de los datos funcionaron de manera estable y permitieron posteriormente realizar el procesamiento y análisis de la señal.
 
  
-8. Conclusión
+# 8. Conclusión
 
 A partir de las pruebas realizadas fue posible comprobar el funcionamiento del sistema desarrollado para la adquisición y análisis de la respuesta galvánica cutánea. En registros de 30 segundos se obtuvieron aproximadamente 600 muestras, permitiendo observar de manera continua las variaciones de la señal y analizar tanto su comportamiento tónico como sus respuestas fásicas.
 
