@@ -9,6 +9,8 @@ La GSR resulta de interés en instrumentación biomédica debido a su relación 
 En esta práctica se desarrolló un sistema vestible para adquirir continuamente las variaciones de la GSR y observar su comportamiento durante diferentes condiciones, incluyendo reposo, respiración profunda y actividades que requieren concentración y esfuerzo mental. La guía plantea como propósito desarrollar un sistema capaz de monitorear el nivel de estrés percibido mediante la respuesta galvánica cutánea.
 
  # 2. Marco teórico
+ <img width="500" height="367" alt="WhatsApp Image 2026-08-25 at 10 00 35 PM" src="https://github.com/user-attachments/assets/8ab42d7a-bd6d-4a92-8602-ce7fe4aa026c" />
+
 
  ## 2.1 Actividad electrodérmica
 
