@@ -1,39 +1,117 @@
-% --- Lectura y visualización en tiempo real del GSR ---
-clear; clc; close all;
+% =========================================================================
+% LAB 2: ADQUISICIÓN GSR CON DIAGNÓSTICO DE CONEXIÓN
+% =========================================================================
 
-puerto = "COM3";  % Cambia según tu sistema (revisa Administrador de dispositivos o /dev/ttyUSB0 en Linux/Mac)
-baudrate = 9600;
+puertoCOM = "COM5";
+baudrate = 115200;
+tiempoCaptura = 30; % 30 segundos
+fs = 20;            % 20 Hz
 
-s = serialport(puerto, baudrate);
-configureTerminator(s, "LF");
-flush(s);
+% Limpieza previa
+if exist('s', 'var') && isvalid(s)
+    clear s;
+end
 
-ventana = 200; % número de muestras visibles en pantalla
-t = nan(1, ventana);
-gsr = nan(1, ventana);
+disp('Conectando a la ESP32 por Bluetooth...');
+try
+    s = serialport(puertoCOM, baudrate);
+    configureTerminator(s, "LF");
+    flush(s);
+    disp('¡Conexión establecida exitosamente!');
+catch
+    error('No se pudo abrir el puerto. Verifica que el Bluetooth esté emparejado y no haya otro programa usando el COM.');
+end
 
-figure;
-h = plot(t, gsr, 'b-', 'LineWidth', 1.2);
-xlabel('Tiempo (s)');
-ylabel('Lectura GSR (ADC 0-1023)');
-title('Monitoreo en tiempo real - GSR');
-grid on;
+disp('Leyendo datos... Si no aumentan las muestras, presiona Ctrl+C.');
 
-tInicio = tic;
+datosGSR = [];
+tic;
+ultimoMensaje = 0;
 
-while true
-    linea = readline(s);
-    datos = split(linea, ",");
-    if numel(datos) == 4
-        tiempo = str2double(datos(1)) / 1000; % ms -> s
-        lectura = str2double(datos(2));
-        nivel = datos(4);
-
-        t = [t(2:end), tiempo];
-        gsr = [gsr(2:end), lectura];
-
-        set(h, 'XData', t, 'YData', gsr);
-        title(sprintf('GSR en tiempo real | Nivel: %s', nivel));
-        drawnow limitrate;
+while toc < tiempoCaptura
+    if exist('s', 'var') && isvalid(s)
+        if s.NumBytesAvailable > 0
+            linea = readline(s);
+            valor = str2double(linea);
+            
+            if ~isnan(valor) && valor > 0
+                datosGSR(end+1) = valor; %#ok<AGROW>
+            end
+        end
+    end
+    
+    % Diagnóstico en vivo cada 5 segundos
+    if floor(toc) > ultimoMensaje && mod(floor(toc), 5) == 0
+        ultimoMensaje = floor(toc);
+        fprintf('Tiempo transcurrido: %d s | Muestras recibidas: %d\n', ultimoMensaje, length(datosGSR));
     end
 end
+
+if exist('s', 'var') && isvalid(s)
+    clear s;
+end
+
+% --- VERIFICACIÓN DE DATOS ---
+if isempty(datosGSR)
+    fprintf('\n ERROR: No se recibió ninguna lectura.\n');
+    fprintf('1. Revisa que el Serial Monitor de Arduino esté CERRADO.\n');
+    fprintf('2. Revisa que en el código de Arduino use Serial.println(valor).\n');
+    fprintf('3. Reinicia la ESP32 desenganchando el USB/Batería 2 segundos.\n');
+    error('Proceso detenido por falta de datos.');
+end
+
+disp('¡Captura completada con éxito!');
+
+% --- PROCESAMIENTO Y FILTRADO ---
+numMuestras = length(datosGSR);
+t = (0:numMuestras-1) / fs;
+conductancia = (datosGSR / 4095) * 10; 
+
+% Filtro Butterworth
+fc = 2;
+K = tan(pi * fc / fs);
+norma = 1 + sqrt(2)*K + K^2;
+
+b0 = K^2 / norma; b1 = 2 * b0; b2 = b0;
+a1 = 2 * (K^2 - 1) / norma; a2 = (1 - sqrt(2)*K + K^2) / norma;
+
+conductanciaFiltrada = zeros(size(conductancia));
+for k = 3:numMuestras
+    conductanciaFiltrada(k) = b0*conductancia(k) + b1*conductancia(k-1) + b2*conductancia(k-2) ...
+                             - a1*conductanciaFiltrada(k-1) - a2*conductanciaFiltrada(k-2);
+end
+
+tonica = movmean(conductanciaFiltrada, fs * 4);
+fasica = conductanciaFiltrada - tonica;
+
+% Clasificación ajustada
+valPromedio = mean(conductanciaFiltrada);
+picoFasico = max(fasica);
+
+if valPromedio < 0.5 && picoFasico < 0.07
+    estadoEstres = 'ESTRES BAJO / RELAJADO';
+else
+    estadoEstres = 'ESTRES ELEVADO / RESPUESTA SIMPATICA ALTA';
+end
+
+% --- GRAFICADO ---
+fig = uifigure('Name', 'Análisis GSR', 'Position', [100 100 800 600]);
+
+ax1 = uiaxes(fig, 'Position', [60 320 680 230]);
+line(ax1, t, conductanciaFiltrada, 'Color', [0.8 0.2 0.2], 'LineWidth', 1.8);
+line(ax1, t, tonica, 'Color', [0.1 0.1 0.1], 'LineWidth', 1.2, 'LineStyle', '--');
+title(ax1, 'Conductancia Filtrada vs Componente Tonica (SCL)');
+xlabel(ax1, 'Tiempo (s)'); ylabel(ax1, 'Conductancia (uS)');
+grid(ax1, 'on');
+
+ax2 = uiaxes(fig, 'Position', [60 50 680 230]);
+line(ax2, t, fasica, 'Color', [0.2 0.4 0.8], 'LineWidth', 1.2);
+title(ax2, 'Componente Fasica (SCR)');
+xlabel(ax2, 'Tiempo (s)'); ylabel(ax2, 'Amplitud (uS)');
+grid(ax2, 'on');
+
+fprintf('\n=== RESULTADOS DE LA PRÁCTICA ===\n');
+fprintf('Muestras totales  : %d\n', numMuestras);
+fprintf('Conductancia Prom : %.4f uS\n', valPromedio);
+fprintf('Estado Evaluado   : %s\n', estadoEstres);
+fprintf('=================================\n');
