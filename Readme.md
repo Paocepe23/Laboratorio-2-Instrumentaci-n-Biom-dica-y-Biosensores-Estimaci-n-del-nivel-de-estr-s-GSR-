@@ -1,6 +1,6 @@
-Laboratorio 2 — Estimación del nivel de estrés basada en la respuesta galvánica cutánea (GSR)
+# Laboratorio 2 — Estimación del nivel de estrés basada en la respuesta galvánica cutánea (GSR)
 
-1. Introducción
+# 1. Introducción
 
 La respuesta galvánica cutánea (GSR, Galvanic Skin Response) es una señal fisiológica relacionada con los cambios en la conductancia eléctrica de la piel. Esta señal hace parte de la actividad electrodérmica (EDA, Electrodermal Activity), la cual comprende diferentes fenómenos eléctricos que ocurren en la piel y que pueden variar ante estímulos fisiológicos, térmicos, mecánicos o emocionales.
 
@@ -8,15 +8,15 @@ La GSR resulta de interés en instrumentación biomédica debido a su relación 
 
 En esta práctica se desarrolló un sistema vestible para adquirir continuamente las variaciones de la GSR y observar su comportamiento durante diferentes condiciones, incluyendo reposo, respiración profunda y actividades que requieren concentración y esfuerzo mental. La guía plantea como propósito desarrollar un sistema capaz de monitorear el nivel de estrés percibido mediante la respuesta galvánica cutánea.
 
- 2. Marco teórico
+ # 2. Marco teórico
 
- 2.1 Actividad electrodérmica
+ ## 2.1 Actividad electrodérmica
 
 La actividad electrodérmica o EDA corresponde a los fenómenos eléctricos asociados con la piel, entre ellos las variaciones de su capacidad para conducir corriente eléctrica. Una de las variables utilizadas para caracterizar este fenómeno es la conductancia cutánea, que puede cambiar ante diferentes estímulos.
 
 La conductancia eléctrica se expresa en siemens (S) y representa la facilidad con la que una corriente eléctrica puede circular a través de un material. En el caso de la piel, esta propiedad está relacionada, entre otros factores, con la actividad de las glándulas sudoríparas.
 
-2.2 Nivel de conductancia cutánea y respuesta de conductancia
+## 2.2 Nivel de conductancia cutánea y respuesta de conductancia
 
 La señal GSR puede analizarse considerando una componente estacionaria y una componente transitoria.
 
@@ -30,7 +30,7 @@ GSR = componente estacionaria + componente transitoria
 
 La identificación de estas dos componentes es uno de los objetivos principales de la práctica.
 
-2.3 GSR y estrés
+## 2.3 GSR y estrés
 
 El estrés puede producir una activación del sistema nervioso autónomo, generando diferentes respuestas fisiológicas. Una de ellas puede ser el aumento de la actividad de las glándulas sudoríparas, lo que modifica las propiedades eléctricas de la piel y puede producir cambios observables en la GSR.
 
@@ -38,7 +38,7 @@ Sin embargo, un aumento de la GSR no significa necesariamente que una persona es
 
 Por esta razón, en esta práctica la GSR debe considerarse un **indicador indirecto de activación fisiológica**, y los resultados deben interpretarse teniendo en cuenta las condiciones en las que fueron obtenidos.
 
-2.4 Sistema de adquisición
+## 2.4 Sistema de adquisición
 
 Para obtener la señal se utilizan electrodos colocados sobre la piel, los cuales permiten detectar cambios en sus propiedades eléctricas. La guía propone el desarrollo de un dispositivo vestible capaz de capturar las variaciones de GSR y transmitirlas a un computador, además de evaluar posteriormente una transmisión inalámbrica.
 
@@ -46,13 +46,13 @@ Entre los elementos disponibles para el desarrollo de la práctica se encuentran
 
 Un aspecto fundamental del diseño es limitar la corriente que atraviesa el cuerpo. La guía establece que, utilizando una alimentación entre 3.3 y 5 VDC, se deben realizar los cálculos necesarios para garantizar que la corriente a través de la piel de un sujeto sano no supere **1 mA**, incluso considerando el caso extremo de una resistencia de piel igual a cero.
 
- 3. Objetivos
+# 3. Objetivos
 
-Objetivo general
+## Objetivo general
 
 Proporcionar un sistema de medición continua de estrés basado en la respuesta galvánica cutánea (GSR).
 
- Objetivos específicos
+## Objetivos específicos
 
 * Identificar las componentes estacionaria y transitoria de la GSR.
 * Elaborar un dispositivo vestible que permita capturar de forma continua las variaciones de la GSR.
@@ -60,10 +60,7 @@ Proporcionar un sistema de medición continua de estrés basado en la respuesta 
 
 Estos objetivos corresponden a los establecidos en la guía de laboratorio.
 
- 4. Metodología
-
-## Metodología
-
+ # 4. Metodología
 Para la implementación del sistema de adquisición de la respuesta galvánica cutánea se utilizó un **corrector de postura como estructura de soporte para el dispositivo vestible**. Sobre este se fijó una protoboard que contenía el circuito de adquisición, el ESP y los demás componentes necesarios para el funcionamiento del sistema. La utilización del corrector permitió mantener los elementos electrónicos sujetos al cuerpo y facilitar el desplazamiento del sujeto durante las pruebas.
 
 El ESP fue alimentado mediante una **power bank**, ubicada en la zona de la cintura del sujeto, con el propósito de proporcionar la energía necesaria para el funcionamiento del dispositivo sin limitar la movilidad de la persona. Esta configuración permitió realizar las mediciones mientras el sistema permanecía colocado sobre el cuerpo.
@@ -74,7 +71,7 @@ La comunicación entre el dispositivo y el computador se realizó mediante **Wi-
 
 La disposición de los componentes permitió obtener un sistema vestible integrado, en el cual el corrector de postura funcionó como soporte físico, la protoboard como base para el circuito electrónico, el ESP como unidad de procesamiento y comunicación, los electrodos como elementos de adquisición de la señal y la power bank como fuente de alimentación. Esta configuración permitió realizar las pruebas de adquisición mientras el sujeto llevaba puesto el dispositivo y se desplazaba con los elementos electrónicos instalados sobre el cuerpo.
 
-### Montaje del dispositivo vestible
+# Montaje del dispositivo vestible
 
 <img width="896" height="1195" alt="Gemini_Generated_Image_yjhbw1yjhbw1yjhb" src="https://github.com/user-attachments/assets/fdc06a4e-0a8e-4cec-b4af-89a124ee7b5a" />
 
@@ -83,7 +80,7 @@ La disposición de los componentes permitió obtener un sistema vestible integra
 
 
 
- 5. Resultados
+# 5. Resultados
 
 El sistema desarrollado permitió adquirir la señal proveniente del sensor GSR y visualizar sus variaciones tanto en tiempo real como mediante el almacenamiento de los datos para análisis posterior.
 
@@ -95,7 +92,7 @@ La señal obtenida por Arduino se expresó inicialmente como una lectura del con
 
 
 
- 6. Discusión
+ # 6. Discusión
 
 El sistema implementado permitió realizar una adquisición continua de la señal GSR y establecer una referencia individual mediante la calibración inicial. El uso de un baseline resulta importante debido a que la señal puede presentar diferentes valores iniciales entre sujetos, por lo que comparar directamente los valores absolutos podría dificultar la interpretación.
 
@@ -111,7 +108,7 @@ Por otro lado, durante las actividades cognitivas, un aumento de la respuesta re
 
 Finalmente, el sistema desarrollado cumple con la función de adquirir, procesar, transmitir y visualizar la respuesta GSR, lo que coincide con el propósito de la práctica de desarrollar un dispositivo vestible capaz de capturar continuamente las variaciones de esta señal.
 
- 7. Conclusión
+# 7. Conclusión
 
 El desarrollo del sistema permitió implementar una plataforma básica para la adquisición continua de la respuesta galvánica cutánea utilizando Arduino y MATLAB. La calibración inicial permitió establecer un baseline individual y posteriormente identificar las variaciones de la señal durante las diferentes pruebas realizadas.
 
