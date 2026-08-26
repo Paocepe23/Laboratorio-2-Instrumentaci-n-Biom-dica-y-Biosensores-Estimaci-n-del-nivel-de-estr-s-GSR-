@@ -62,57 +62,23 @@ Estos objetivos corresponden a los establecidos en la guía de laboratorio.
 
  4. Metodología
 
-La implementación del sistema de medición se realizó utilizando un Arduino y un sensor de respuesta galvánica cutánea conectado a la entrada analógica A0. El Arduino se encargó de adquirir continuamente la señal proveniente del sensor, realizar un procesamiento básico para reducir las variaciones rápidas de la lectura y determinar un nivel de respuesta relativo respecto a las condiciones iniciales del sujeto.
+## Metodología
 
- 4.1 Adquisición y calibración de la señal
+Para la implementación del sistema de adquisición de la respuesta galvánica cutánea se utilizó un **corrector de postura como estructura de soporte para el dispositivo vestible**. Sobre este se fijó una protoboard que contenía el circuito de adquisición, el ESP y los demás componentes necesarios para el funcionamiento del sistema. La utilización del corrector permitió mantener los elementos electrónicos sujetos al cuerpo y facilitar el desplazamiento del sujeto durante las pruebas.
 
-Al iniciar el sistema, se realizó una etapa de calibración con el sujeto en reposo. Durante aproximadamente 3 segundos se adquirieron 100 muestras de la entrada analógica A0, utilizando un intervalo de 30 ms entre muestras. A partir de estas mediciones se calculó el promedio, el cual se utilizó como **baseline** o nivel de referencia:
+El ESP fue alimentado mediante una **power bank**, ubicada en la zona de la cintura del sujeto, con el propósito de proporcionar la energía necesaria para el funcionamiento del dispositivo sin limitar la movilidad de la persona. Esta configuración permitió realizar las mediciones mientras el sistema permanecía colocado sobre el cuerpo.
 
-La clasificación se realizó mediante Δ = lectura - baseline
+En la protoboard también se conectaron los **electrodos encargados de adquirir la señal proveniente del bíceps**. Estos electrodos permitieron obtener la información fisiológica necesaria para el análisis de la respuesta galvánica cutánea, manteniendo el contacto con la piel durante las diferentes pruebas realizadas.
 
-Este valor permitió establecer una referencia individual para comparar las variaciones posteriores de la señal. De esta manera, el sistema no depende únicamente de un valor absoluto, sino que analiza cuánto se modifica la lectura respecto al estado inicial del sujeto.
+La comunicación entre el dispositivo y el computador se realizó mediante **Wi-Fi**, permitiendo transmitir los datos adquiridos de forma inalámbrica. Aunque esta alternativa representó un mayor consumo energético debido al funcionamiento continuo de la comunicación inalámbrica, durante las pruebas presentó un comportamiento más favorable y permitió obtener mejores resultados en comparación con otras alternativas de transmisión evaluadas. Por esta razón, se decidió utilizar la comunicación Wi-Fi como parte de la configuración final del sistema.
 
-Durante el funcionamiento normal se adquirieron 10 muestras consecutivas y se calculó su promedio. Este procedimiento actúa como un suavizado básico de la señal y permite disminuir parcialmente variaciones rápidas o ruido producido durante la adquisición.
+La disposición de los componentes permitió obtener un sistema vestible integrado, en el cual el corrector de postura funcionó como soporte físico, la protoboard como base para el circuito electrónico, el ESP como unidad de procesamiento y comunicación, los electrodos como elementos de adquisición de la señal y la power bank como fuente de alimentación. Esta configuración permitió realizar las pruebas de adquisición mientras el sujeto llevaba puesto el dispositivo y se desplazaba con los elementos electrónicos instalados sobre el cuerpo.
 
-La lectura obtenida por el conversor analógico-digital del Arduino se encuentra en un rango de 0 a 1023. Posteriormente, esta lectura se convirtió a un valor de voltaje utilizando la relación:
+### Montaje del dispositivo vestible
 
-donde (ADC) corresponde a la lectura obtenida en la entrada analógica y (V) representa el voltaje equivalente.
+**Figura X. Vista frontal y posterior del dispositivo vestible utilizado para la adquisición de la señal GSR.**
 
- 4.2 Estimación del nivel de respuesta
-
-Para estimar el nivel de respuesta fisiológica, se calculó la diferencia entre la lectura actual y el valor de referencia obtenido durante la calibración:
-
-A partir de esta diferencia se establecieron tres categorías:
-
-
-
-Estos valores corresponden a umbrales iniciales implementados en el código y deben entenderse como una **clasificación relativa de la respuesta medida**, no como una escala clínica universal de estrés. La propia guía plantea que los umbrales deben ajustarse después de realizar las pruebas experimentales de la Parte B.2, tomando como referencia los valores máximos y mínimos obtenidos durante la práctica.
-
- 4.3 Transmisión de los datos
-
-Una vez procesada cada medición, Arduino envió los datos mediante comunicación serial a una velocidad de 9600 baudios. La información se transmitió en formato CSV con cuatro variables:
-
-El tiempo corresponde al instante de adquisición en milisegundos, la lectura corresponde al valor entregado por el ADC, el voltaje corresponde a su conversión a voltios y el nivel corresponde a la clasificación relativa obtenida mediante los umbrales definidos.
-
-La estructura de los datos permitió posteriormente almacenar y procesar las mediciones desde MATLAB.
-
- 4.4 Visualización en tiempo real mediante MATLAB
-
-Para visualizar la señal durante la adquisición se desarrolló un segundo programa en MATLAB. Este programa estableció comunicación con Arduino mediante el puerto serial `COM3` a 9600 baudios y recibió continuamente las líneas de datos enviadas por el microcontrolador.
-
-Cada línea recibida fue separada mediante las comas del formato CSV y se extrajeron el tiempo, la lectura GSR y el nivel estimado. El tiempo fue convertido de milisegundos a segundos para facilitar la interpretación de las gráficas.
-
-La visualización se realizó mediante una ventana móvil de 200 muestras, permitiendo observar el comportamiento de la señal en tiempo real sin almacenar indefinidamente todos los puntos en la gráfica. Además, el título de la gráfica se actualizó para mostrar simultáneamente el nivel de respuesta calculado por el sistema.
-
-Este procedimiento permitió comprobar visualmente el comportamiento del dispositivo y observar las variaciones de la señal mientras el sujeto se encontraba en diferentes condiciones experimentales.
-
- 4.5 Registro de datos para análisis posterior
-
-Además de la visualización en tiempo real, se implementó un segundo programa en MATLAB destinado al almacenamiento de los datos. Para cada prueba se abrió un archivo denominado `registro_gsr.csv`, en el cual se guardaron las mediciones recibidas durante un periodo de 60 segundos.
-
-Una vez finalizada la adquisición, el archivo fue importado nuevamente a MATLAB mediante `readtable`. Con los datos almacenados se generó una gráfica de la lectura GSR en función del tiempo, permitiendo analizar posteriormente las variaciones de la señal con mayor resolución.
-
-El procedimiento general desarrollado puede resumirse de la siguiente manera:
+*En la vista frontal se observa la disposición del corrector de postura y los elementos asociados al sistema de adquisición, mientras que en la vista posterior se aprecia la ubicación de la protoboard, el ESP y la conexión con la fuente de alimentación ubicada en la zona de la cintura.*
 
 
 
