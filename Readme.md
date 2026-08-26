@@ -63,7 +63,7 @@ Estos objetivos corresponden a los establecidos en la guía de laboratorio.
  # 4. Metodología
 Para la implementación del sistema de adquisición de la respuesta galvánica cutánea se utilizó un **corrector de postura como estructura de soporte para el dispositivo vestible**. Sobre este se fijó una protoboard que contenía el circuito de adquisición, el ESP y los demás componentes necesarios para el funcionamiento del sistema. La utilización del corrector permitió mantener los elementos electrónicos sujetos al cuerpo y facilitar el desplazamiento del sujeto durante las pruebas.
 
-<img width="1200" height="900" alt="WhatsApp Image 2026-08-25 at 9 49 32 PM" src="https://github.com/user-attachments/assets/e4c91eac-d1de-4258-a693-fb3cbdc2fc9e" />
+<img width="500" height="300" alt="WhatsApp Image 2026-08-25 at 9 49 32 PM" src="https://github.com/user-attachments/assets/e4c91eac-d1de-4258-a693-fb3cbdc2fc9e" />
 
 
 El ESP fue alimentado mediante una **power bank**, ubicada en la zona de la cintura del sujeto, con el propósito de proporcionar la energía necesaria para el funcionamiento del dispositivo sin limitar la movilidad de la persona. Esta configuración permitió realizar las mediciones mientras el sistema permanecía colocado sobre el cuerpo.
