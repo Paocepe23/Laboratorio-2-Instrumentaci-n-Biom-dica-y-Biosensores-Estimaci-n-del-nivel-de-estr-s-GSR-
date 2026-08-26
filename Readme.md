@@ -77,9 +77,11 @@ La disposición de los componentes permitió obtener un sistema vestible integra
 
 # 5. Resultados
 
-El sistema desarrollado permitió adquirir la señal proveniente del sensor GSR y visualizar sus variaciones tanto en tiempo real como mediante el almacenamiento de los datos para análisis posterior.
 
-La señal obtenida por Arduino se expresó inicialmente como una lectura del conversor analógico-digital en un rango de 0 a 1023. A partir de esta lectura también se calculó el voltaje equivalente. Por lo tanto, las gráficas obtenidas directamente a partir del archivo CSV representan principalmente la **respuesta del sistema de adquisición en unidades ADC**, y no una medición directa de conductancia en siemens.
+A partir de las pruebas realizadas se obtuvieron registros de aproximadamente **30 segundos y 600 muestras por prueba**, permitiendo observar el comportamiento de la señal GSR durante cada condición evaluada. Los datos fueron procesados para obtener la conductancia y separar sus componentes tónica y fásica, facilitando la identificación de las variaciones de la señal a lo largo del tiempo.
+
+A continuación, se presentan las gráficas correspondientes a las pruebas realizadas, junto con los valores promedio de conductancia y el estado estimado por el sistema. Estos resultados permiten comparar las diferentes respuestas obtenidas bajo cada condición experimental.
+
 ## RESULTADO 1
 
 <img width="800" height="411" alt="WhatsApp Image 2026-08-25 at 9 43 34 PM" src="https://github.com/user-attachments/assets/adc91bc9-03ee-4d24-8c99-7089cdfa3b51" />
