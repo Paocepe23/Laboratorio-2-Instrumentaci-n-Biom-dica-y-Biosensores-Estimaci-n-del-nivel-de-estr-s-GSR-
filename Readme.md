@@ -92,29 +92,45 @@ La señal obtenida por Arduino se expresó inicialmente como una lectura del con
 
 
 
- # 6. Discusión
+ 6. Análisis de resultados
 
-El sistema implementado permitió realizar una adquisición continua de la señal GSR y establecer una referencia individual mediante la calibración inicial. El uso de un baseline resulta importante debido a que la señal puede presentar diferentes valores iniciales entre sujetos, por lo que comparar directamente los valores absolutos podría dificultar la interpretación.
+Durante las pruebas se realizaron adquisiciones de 30 segundos, obteniendo aproximadamente 600 muestras por registro, lo que evidencia una adquisición continua y estable de la señal. En los resultados se obtuvieron diferentes valores promedio de conductancia dependiendo de la condición evaluada. En una de las pruebas se registró una conductancia promedio de 0,1983 µS, clasificada por el sistema como estrés bajo o estado relajado. En otra medición se obtuvo un promedio de 0,5179 µS, correspondiente a un estado clasificado como estrés elevado o respuesta simpática alta, mientras que una tercera prueba presentó un promedio de **0,6256 µS**, clasificado como **estrés moderado o estado de alerta**.
 
-El promedio de 10 muestras utilizado durante la adquisición funciona como un mecanismo sencillo de suavizado, reduciendo parcialmente las variaciones rápidas de la lectura. Esto es conveniente para la actividad electrodérmica, ya que las variaciones de interés son relativamente lentas. Sin embargo, el filtrado implementado es básico y puede mejorarse mediante técnicas de procesamiento digital más específicas.
+En las gráficas se observa que la señal de conductancia presenta una componente que cambia lentamente a lo largo del tiempo, correspondiente a la componente tónica o SCL, sobre la cual aparecen variaciones más rápidas asociadas a la componente fásica o SCR. En la primera gráfica, la conductancia se mantiene aproximadamente entre 0,61 y 0,66 µS, con varias fluctuaciones y algunos incrementos puntuales. La componente fásica presenta cambios más notorios al inicio y alrededor de los 13 y 20 segundos, mostrando respuestas transitorias sobre el nivel basal.
 
-La clasificación implementada permite transformar una variación numérica de la señal en una categoría comprensible para el usuario. Sin embargo, debe tenerse en cuenta que el algoritmo utilizado únicamente analiza la diferencia entre la lectura instantánea y el baseline. Por sí solo, este criterio no permite afirmar de manera definitiva que el sujeto presenta un determinado nivel psicológico de estrés.
+En la segunda prueba se observa un comportamiento diferente, con un aumento inicial de la conductancia desde aproximadamente 0,50 µS hasta valores cercanos a 0,65 µS durante los primeros segundos. Posteriormente, la señal disminuye y permanece alrededor de 0,48–0,52 µS durante buena parte del registro. Este comportamiento también se refleja en la componente fásica, donde se presenta una respuesta marcada aproximadamente entre los 6 y 8 segundos, seguida de variaciones de menor amplitud.
 
-La guía de laboratorio establece que la conductancia cutánea puede aumentar ante diferentes estímulos, incluyendo estímulos respiratorios, térmicos y mecánicos, además de aquellos relacionados con estados de activación fisiológica. Por esta razón, una variación de la señal durante la práctica debe analizarse considerando el contexto experimental.
+Finalmente, en la prueba clasificada como estrés bajo se observa una tendencia progresiva de la componente tónica, pasando aproximadamente de 0,16 µS al inicio hasta valores cercanos a 0,22 µS al final del registro. Aunque existen fluctuaciones en la componente fásica, estas presentan una amplitud relativamente pequeña en comparación con las observadas en las otras pruebas.
 
-En el caso de la respiración profunda, la guía plantea que debe observarse un incremento considerable de la GSR seguido de un retorno progresivo hacia el valor inicial. Si este comportamiento se presentó en las mediciones obtenidas, puede considerarse evidencia de que el sistema fue capaz de detectar una variación fisiológica ante el estímulo aplicado.
+En conjunto, los resultados muestran que el sistema fue capaz de detectar diferentes comportamientos de la señal GSR y distinguir variaciones entre las condiciones evaluadas. Sin embargo, los valores de conductancia y las categorías de estrés deben interpretarse como resultados obtenidos bajo las condiciones específicas de la práctica, ya que la señal GSR puede verse afectada por factores adicionales al estrés, como movimiento, contacto de los electrodos y cambios fisiológicos del sujeto.
 
-Por otro lado, durante las actividades cognitivas, un aumento de la respuesta respecto al estado basal podría estar relacionado con una mayor activación fisiológica producto de la demanda mental. No obstante, esta interpretación debe realizarse con precaución debido a la influencia de factores como movimiento, temperatura, contacto de los electrodos y otros estímulos externos.
 
-Finalmente, el sistema desarrollado cumple con la función de adquirir, procesar, transmitir y visualizar la respuesta GSR, lo que coincide con el propósito de la práctica de desarrollar un dispositivo vestible capaz de capturar continuamente las variaciones de esta señal.
 
-# 7. Conclusión
 
-El desarrollo del sistema permitió implementar una plataforma básica para la adquisición continua de la respuesta galvánica cutánea utilizando Arduino y MATLAB. La calibración inicial permitió establecer un baseline individual y posteriormente identificar las variaciones de la señal durante las diferentes pruebas realizadas.
+ 7. Discusión
 
-El procesamiento implementado permitió suavizar las mediciones, convertir la señal ADC a voltaje y establecer una clasificación relativa de la respuesta mediante tres niveles. Además, la comunicación serial con MATLAB permitió visualizar la señal en tiempo real y almacenar los datos en archivos CSV para su análisis posterior.
+Los resultados obtenidos permiten observar que la respuesta galvánica cutánea presenta variaciones tanto en su nivel basal como en sus respuestas transitorias. Esto es importante porque la señal GSR no permanece constante durante una prueba, sino que puede cambiar como consecuencia de diferentes estímulos y del estado fisiológico del sujeto. En las tres mediciones realizadas se observaron comportamientos diferentes, lo que permitió al sistema establecer distintos estados de respuesta.
 
-Los resultados permiten considerar la GSR como una señal útil para detectar cambios en la activación fisiológica, aunque su interpretación como indicador de estrés debe realizarse de manera cuidadosa. La respuesta galvánica puede verse afectada por diferentes estímulos y condiciones, por lo que los umbrales utilizados deben ser ajustados experimentalmente y no deben interpretarse como una escala clínica universal.
+La prueba con un promedio de 0,6256 µS, clasificada como estrés moderado o estado de alerta, presentó una señal relativamente estable alrededor de 0,62–0,65 µS, acompañada de varias respuestas fásicas. Esto indica que, aunque la conductancia no presentó cambios extremadamente grandes durante todo el registro, sí existieron variaciones puntuales que modificaron temporalmente la señal.
 
-El sistema constituye así una aproximación funcional a un dispositivo biomédico vestible para el monitoreo continuo de una señal fisiológica, integrando adquisición analógica, procesamiento, comunicación serial, visualización y almacenamiento de datos.
+Por otro lado, la medición con un promedio de 0,5179 µS, clasificada por el sistema como estrés elevado o respuesta simpática alta, presentó una respuesta más marcada durante los primeros segundos. La conductancia aumentó rápidamente hasta aproximadamente 0,65 µS y posteriormente descendió hacia valores cercanos a 0,50 µS. Este cambio también se refleja claramente en la componente fásica, donde aparece una respuesta de mayor amplitud. Este comportamiento puede relacionarse con una activación fisiológica durante ese intervalo, aunque no permite afirmar por sí solo que el sujeto haya experimentado estrés psicológico.
+
+La prueba clasificada como estrés bajo o relajado, con un promedio de 0,1983 µS, mostró una componente fásica de menor amplitud y una variación más gradual de la componente tónica. Esto representa un comportamiento diferente al observado en la prueba de mayor respuesta, y permite apreciar cómo la señal puede cambiar dependiendo de la condición del sujeto.
+
+Un aspecto importante es que la clasificación de estrés utilizada por el sistema debe considerarse una estimación relativa. La GSR está relacionada con la actividad del sistema nervioso autónomo y puede responder ante diferentes estímulos, por lo que una mayor conductancia no necesariamente significa que exista un mayor nivel de estrés psicológico. Por esta razón, los resultados deben interpretarse considerando las condiciones experimentales y no únicamente el valor promedio de conductancia.
+
+La separación de la señal en una componente tónica y una componente fásica permitió analizar de una manera más clara estos cambios. La componente tónica permitió observar la tendencia general de la conductancia durante los 30 segundos de adquisición, mientras que la componente fásica permitió identificar respuestas transitorias que aparecen sobre dicho nivel. Esta separación fue especialmente útil para reconocer los cambios más pronunciados presentes al inicio de algunas de las pruebas.
+
+En general, el sistema presentó un comportamiento adecuado para registrar continuamente la señal durante las pruebas, obteniendo cerca de 600 muestras en cada registro de 30 segundos. Esto demuestra que la adquisición y transmisión de los datos funcionaron de manera estable y permitieron posteriormente realizar el procesamiento y análisis de la señal.
+
+ 
+8. Conclusión
+
+A partir de las pruebas realizadas fue posible comprobar el funcionamiento del sistema desarrollado para la adquisición y análisis de la respuesta galvánica cutánea. En registros de 30 segundos se obtuvieron aproximadamente 600 muestras, permitiendo observar de manera continua las variaciones de la señal y analizar tanto su comportamiento tónico como sus respuestas fásicas.
+
+Los resultados presentaron diferentes valores promedio de conductancia, desde 0,1983 µS, asociado por el sistema con un estado de estrés bajo o relajado, hasta 0,6256 µS, clasificado como un estado moderado o de alerta. También se obtuvo un valor promedio de 0,5179 µS, que el sistema clasificó como estrés elevado o respuesta simpática alta. Estas diferencias permitieron demostrar que el dispositivo es capaz de detectar cambios en la respuesta fisiológica entre diferentes condiciones de evaluación.
+
+El análisis de las componentes tónica y fásica permitió identificar tanto las variaciones lentas de la conductancia como las respuestas transitorias que aparecen durante determinados momentos de la prueba. Esto facilita la interpretación de la señal y permite observar cambios que podrían pasar desapercibidos al analizar únicamente un valor promedio.
+
+Finalmente, aunque los resultados muestran que la GSR puede utilizarse para detectar variaciones relacionadas con la activación fisiológica, la señal no debe considerarse por sí sola como una medición directa del estrés. Factores como el movimiento, el contacto de los electrodos y otras respuestas fisiológicas pueden modificar la conductancia. Por lo tanto, el sistema desarrollado representa una herramienta útil para el monitoreo y análisis de la respuesta electrodérmica, pero sus resultados deben interpretarse teniendo en cuenta las condiciones específicas de cada prueba.
 
