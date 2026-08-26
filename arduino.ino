@@ -1,44 +1,27 @@
-// --- Monitor GSR (Respuesta Galvánica de la Piel) ---
-const int gsrPin = A0;
-const int numMuestras = 10;      // suavizado
-unsigned long tBaseline = 0;
-float baseline = 0;
+#include "BluetoothSerial.h"
+
+BluetoothSerial SerialBT;
+const int gsrPin = 4; // Pin de lectura analógica del sensor GSR (D4)
 
 void setup() {
-  Serial.begin(9600);
-  // Calibración inicial: promedia 3 segundos en reposo
-  long suma = 0;
-  for (int i = 0; i < 100; i++) {
-    suma += analogRead(gsrPin);
-    delay(30);
-  }
-  baseline = suma / 100.0;
+  // Comunicación Serie por cable (USB) para depurar si fuera necesario
+  Serial.begin(115200);
+  
+  // Nombre Bluetooth visible en Windows
+  SerialBT.begin("ESP32_GSR_BT"); 
+  
+  // Resolución de 12 bits para el ADC (valores de 0 a 4095)
+  analogReadResolution(12);
+  
+  Serial.println("ESP32 Lista. Transmitiendo por Bluetooth...");
 }
 
 void loop() {
-  long suma = 0;
-  for (int i = 0; i < numMuestras; i++) {
-    suma += analogRead(gsrPin);
-    delay(5);
-  }
-  float lectura = suma / (float)numMuestras;
-  float voltaje = lectura * (5.0 / 1023.0);
-
-  // Nivel de estrés relativo al baseline (ajustar umbrales tras la Parte B.2)
-  float delta = lectura - baseline;
-  String nivel;
-  if (delta < 15) nivel = "BAJO";
-  else if (delta < 40) nivel = "MODERADO";
-  else nivel = "ALTO";
-
-  // Enviamos CSV: tiempo_ms, lectura_cruda, voltaje, nivel
-  Serial.print(millis());
-  Serial.print(",");
-  Serial.print(lectura);
-  Serial.print(",");
-  Serial.print(voltaje, 3);
-  Serial.print(",");
-  Serial.println(nivel);
-
-  delay(100); // ~10 Hz, suficiente para EDA (que es lenta, <1 Hz de contenido útil)
+  int lectura = analogRead(gsrPin);
+  
+  // Envía la lectura por Bluetooth hacia MATLAB
+  SerialBT.println(lectura);
+  
+  // Muestreo a 20 Hz (cada 50 milisegundos)
+  delay(50); 
 }
