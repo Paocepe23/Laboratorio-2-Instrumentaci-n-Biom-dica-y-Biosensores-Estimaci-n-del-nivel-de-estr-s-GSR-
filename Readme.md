@@ -85,8 +85,9 @@ La disposición de los componentes permitió obtener un sistema vestible integra
 El sistema desarrollado permitió adquirir la señal proveniente del sensor GSR y visualizar sus variaciones tanto en tiempo real como mediante el almacenamiento de los datos para análisis posterior.
 
 La señal obtenida por Arduino se expresó inicialmente como una lectura del conversor analógico-digital en un rango de 0 a 1023. A partir de esta lectura también se calculó el voltaje equivalente. Por lo tanto, las gráficas obtenidas directamente a partir del archivo CSV representan principalmente la **respuesta del sistema de adquisición en unidades ADC**, y no una medición directa de conductancia en siemens.
-<img width="542" height="150" alt="WhatsApp Image 2026-08-25 at 9 43 34 PM (1)" src="https://github.com/user-attachments/assets/7e48bd8f-bce4-428e-a2f5-e0657e1ddf59" />
+
 <img width="1600" height="789" alt="WhatsApp Image 2026-08-25 at 9 43 34 PM" src="https://github.com/user-attachments/assets/adc91bc9-03ee-4d24-8c99-7089cdfa3b51" />
+<img width="542" height="150" alt="WhatsApp Image 2026-08-25 at 9 43 34 PM (1)" src="https://github.com/user-attachments/assets/7e48bd8f-bce4-428e-a2f5-e0657e1ddf59" />
 ![Uploading WhatsApp Image 2026-08-25 at 9.43.34 PM (1).jpeg…]()
 ![Uploading image.png…]()
 
