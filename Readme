@@ -76,27 +76,15 @@ Durante el funcionamiento normal se adquirieron 10 muestras consecutivas y se ca
 
 La lectura obtenida por el conversor analógico-digital del Arduino se encuentra en un rango de 0 a 1023. Posteriormente, esta lectura se convirtió a un valor de voltaje utilizando la relación:
 
-[
-V = ADC\left(\frac{5}{1023}\right)
-]
-
 donde (ADC) corresponde a la lectura obtenida en la entrada analógica y (V) representa el voltaje equivalente.
 
  4.2 Estimación del nivel de respuesta
 
 Para estimar el nivel de respuesta fisiológica, se calculó la diferencia entre la lectura actual y el valor de referencia obtenido durante la calibración:
 
-[
-\Delta = lectura - baseline
-]
-
 A partir de esta diferencia se establecieron tres categorías:
 
-| Diferencia respecto al baseline | Nivel    |
-| ------------------------------: | -------- |
-|                   (\Delta < 15) | Bajo     |
-|           (15 \leq \Delta < 40) | Moderado |
-|                (\Delta \geq 40) | Alto     |
+
 
 Estos valores corresponden a umbrales iniciales implementados en el código y deben entenderse como una **clasificación relativa de la respuesta medida**, no como una escala clínica universal de estrés. La propia guía plantea que los umbrales deben ajustarse después de realizar las pruebas experimentales de la Parte B.2, tomando como referencia los valores máximos y mínimos obtenidos durante la práctica.
 
