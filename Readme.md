@@ -87,18 +87,19 @@ El sistema desarrollado permitió adquirir la señal proveniente del sensor GSR 
 La señal obtenida por Arduino se expresó inicialmente como una lectura del conversor analógico-digital en un rango de 0 a 1023. A partir de esta lectura también se calculó el voltaje equivalente. Por lo tanto, las gráficas obtenidas directamente a partir del archivo CSV representan principalmente la **respuesta del sistema de adquisición en unidades ADC**, y no una medición directa de conductancia en siemens.
 ## RESULTADO 1
 
-<img width="1600" height="789" alt="WhatsApp Image 2026-08-25 at 9 43 34 PM" src="https://github.com/user-attachments/assets/adc91bc9-03ee-4d24-8c99-7089cdfa3b51" />
+<img width="800" height="411" alt="WhatsApp Image 2026-08-25 at 9 43 34 PM" src="https://github.com/user-attachments/assets/adc91bc9-03ee-4d24-8c99-7089cdfa3b51" />
 <img width="542" height="150" alt="WhatsApp Image 2026-08-25 at 9 43 34 PM (1)" src="https://github.com/user-attachments/assets/7e48bd8f-bce4-428e-a2f5-e0657e1ddf59" />
 
 ## RESULTADO 2
 
-<img width="1600" height="809" alt="WhatsApp Image 2026-08-25 at 9 44 04 PM (1)" src="https://github.com/user-attachments/assets/c73d9e60-5867-4ec7-957c-ecb9facc5b96" />
+<img width="800" height="411" alt="WhatsApp Image 2026-08-25 at 9 44 04 PM (1)" src="https://github.com/user-attachments/assets/c73d9e60-5867-4ec7-957c-ecb9facc5b96" />
 <img width="417" height="112" alt="WhatsApp Image 2026-08-25 at 9 44 04 PM" src="https://github.com/user-attachments/assets/5d21f6df-ba9d-43f3-8850-f85857eba346" />
 
 ## RESULTADO 3
 
+
+<img width="800" height="411" alt="WhatsApp Image 2026-08-25 at 9 43 50 PM" src="https://github.com/user-attachments/assets/ccca16b6-63ec-4068-8404-52ea12adadea" />
 <img width="417" height="112" alt="WhatsApp Image 2026-08-25 at 9 44 04 PM (4)" src="https://github.com/user-attachments/assets/a2f02f25-d47f-486c-a3f1-1c008a8cc777" />
-<img width="1600" height="811" alt="WhatsApp Image 2026-08-25 at 9 43 50 PM" src="https://github.com/user-attachments/assets/ccca16b6-63ec-4068-8404-52ea12adadea" />
 
 
 
